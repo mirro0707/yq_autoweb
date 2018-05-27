@@ -1,0 +1,58 @@
+特点：
+整个测试过程只需要打开/关闭一次浏览器，大大缩短测试时间。
+
+测试用例运行失败自动截图。
+
+测试用例运行失败可以重跑。
+
+测试数据参数化。
+
+依赖库：
+selenium： Web自动化测试库 https://pypi.python.org/pypi/selenium
+
+pytest： 单元测试框架 https://pypi.python.org/pypi/pytest
+
+pytest-html： 生成html测试报告 https://pypi.python.org/pypi/pytest-html
+
+pytest-rerunfailures： 失败重跑 https://pypi.python.org/pypi/pytest-rerunfailures
+
+安装：
+pip install -r requirements.txt
+
+*****************************************************
+python3.3以上 __init__.py对于一个包来说是否是必须的？
+# coding=utf-8 是否还需要写
+*****************************************************
+
+a group = a class
+group some cases into a class
+We can simply run the module by passing its filename
+
+代码中执行用例
+args = ['-s', '-q']
+pytest.main(args)
+-s输出日志，-q quiet报道模式,这样输出会好看点
+
+通过@pytest.fixture() 注释会在执行测试用例之前初始化操作.然后直接在测试用例的方法中就可以拿到初始化返回的参数(参数名要和初始化的方法名一样)
+fixture scope:module/class/session/invocation/function(default)
+fixture 的文件的文件名必须叫conftest.py
+
+@pytest.fixture(scope="session")
+
+
+setup_module/teardown_module      在所有测试用例执行之后和之后执行。
+
+setup_function/teardown_function    在每个测试用例之后和之后执行。
+
+-------类---------
+setup_class/teardown_class  在当前测试类的开始与结束执行。
+
+setup/teardown                   在每个测试方法开始与结束执行。
+
+setup_method/teardown_method     在每个测试方法开始与结束执行，与setup/treadown级别相同
+
+*****************************
+pytest-html生成html报告
+pytest-rerunfailures失败重试
+
+chrome驱动放在/usr/local/bin环境变量下
