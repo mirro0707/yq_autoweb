@@ -1,58 +1,42 @@
-特点：
-整个测试过程只需要打开/关闭一次浏览器，大大缩短测试时间。
+待添加
 
-测试用例运行失败自动截图。
+预知可能会发生变化的东西提取到一个配置文件中：
+不同系统
+不同浏览器
+不同数据库
+更换测试机
 
-测试用例运行失败可以重跑。
+用例失败多种原因，比如：
+断言失败-->正常失败
+网络原因失败、数据库原因失败-->异常失败（重跑）
 
-测试数据参数化。
+用例有等级设置，每次可以选择批量跑哪些！（用于不同时期执行不同等级的用例）
+有前置用例则先执行前置用例，然后获取返回值做为本用例的参数（接口用例一般需要）
 
-依赖库：
-selenium： Web自动化测试库 https://pypi.python.org/pypi/selenium
+*********************************************
+模拟鼠标事件
+click()：单击鼠标左键
+clear()：清空内容
+sendkeys()：输入数据
+submit()：提交表单
+context_click() 右击鼠标
+double_click() 双击鼠标
+ActionChains(driver).move_to_element(e).perform()鼠标悬停
+【鼠标悬停需要先导入模块：from selenium.webdriver.common.action_chains import ActionChains
+perform() 执行所有ActionChains中的行为】
+************************************************
+切换不同tab:driver.switch_to.window(driver.window_handles[-1])# 切换句柄+切换焦点
+切换到指定frame中：
+driver.switch_to.frame('frame_name')
+driver.switch_to.frame(index)
+driver.switch_to.frame(driver.find_elements_by_tag_name("iframe")[0])
 
-pytest： 单元测试框架 https://pypi.python.org/pypi/pytest
-
-pytest-html： 生成html测试报告 https://pypi.python.org/pypi/pytest-html
-
-pytest-rerunfailures： 失败重跑 https://pypi.python.org/pypi/pytest-rerunfailures
-
-安装：
-pip install -r requirements.txt
-
-*****************************************************
-python3.3以上 __init__.py对于一个包来说是否是必须的？
-# coding=utf-8 是否还需要写
-*****************************************************
-
-a group = a class
-group some cases into a class
-We can simply run the module by passing its filename
-
-代码中执行用例
-args = ['-s', '-q']
-pytest.main(args)
--s输出日志，-q quiet报道模式,这样输出会好看点
-
-通过@pytest.fixture() 注释会在执行测试用例之前初始化操作.然后直接在测试用例的方法中就可以拿到初始化返回的参数(参数名要和初始化的方法名一样)
-fixture scope:module/class/session/invocation/function(default)
-fixture 的文件的文件名必须叫conftest.py
-
-@pytest.fixture(scope="session")
-
-
-setup_module/teardown_module      在所有测试用例执行之后和之后执行。
-
-setup_function/teardown_function    在每个测试用例之后和之后执行。
-
--------类---------
-setup_class/teardown_class  在当前测试类的开始与结束执行。
-
-setup/teardown                   在每个测试方法开始与结束执行。
-
-setup_method/teardown_method     在每个测试方法开始与结束执行，与setup/treadown级别相同
-
-*****************************
-pytest-html生成html报告
-pytest-rerunfailures失败重试
-
-chrome驱动放在/usr/local/bin环境变量下
+************************************************
+模拟键盘 from selenium.webdriver.common.keys import Keys
+send_keys(Keys.ENTER)
+键盘F1到F12：send_keys(Keys.F1)把F1改成对应的快捷键
+复制Ctrl+C：send_keys(Keys.CONTROL,'c') 
+粘贴Ctrl+V：send_keys(Keys.CONTROL,'v') 
+全选Ctrl+A：send_keys(Keys.CONTROL,'a') 
+剪切Ctrl+X：send_keys(Keys.CONTROL,'x') 
+制表键Tab:  send_keys(Keys.TAB) 
